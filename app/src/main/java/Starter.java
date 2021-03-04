@@ -26,7 +26,38 @@ public class Starter {
 //        criteriaAPI();
 
 //        hierarchyInsertDataMapped();
-        hierarchyInsertDataSingleTable();
+//        hierarchyInsertDataSingleTable();
+        hierarchyInsertDataJoin();
+    }
+
+    private static void hierarchyInsertDataJoin() {
+        final Configuration configure = new Configuration().configure();
+        final SessionFactory sessionFactory = configure.buildSessionFactory();
+        final EntityManager entityManager = sessionFactory.createEntityManager();
+        entityManager.getTransaction().begin();
+
+        jh.hierarchies.join.ScienceBook sBook = jh.hierarchies.join.ScienceBook.builder()
+                .science("Высшая алгебра")
+                .build();
+
+        sBook.setBookTitle("Мат Анализ первый курс");
+        sBook.setAuthor("Фихтенгольц");
+        sBook.setPublishYear(1978);
+
+        jh.hierarchies.join.FictionBook fBook = jh.hierarchies.join.FictionBook.builder().genre("роман").build();
+        fBook.setBookTitle("Евгений онегин");
+        fBook.setPublishYear(1833);
+        fBook.setIsPoem(true);
+        fBook.setAuthor("Пушкин");
+
+
+        entityManager.persist(sBook);
+        entityManager.persist(fBook);
+
+        entityManager.createQuery("from Book").getResultStream().forEach(System.out::println);
+
+        entityManager.getTransaction().commit();
+        entityManager.close();
     }
 
     private static void hierarchyInsertDataSingleTable() {
@@ -56,7 +87,6 @@ public class Starter {
         entityManager.getTransaction().commit();
         entityManager.close();
     }
-
     private static void hierarchyInsertDataMapped() {
         final Configuration configure = new Configuration().configure();
         final SessionFactory sessionFactory = configure.buildSessionFactory();
@@ -81,9 +111,12 @@ public class Starter {
         entityManager.persist(sBook);
         entityManager.persist(fBook);
 
+        entityManager.createQuery("from Book").getResultStream().forEach(System.out::println);
+
         entityManager.getTransaction().commit();
         entityManager.close();
     }
+
 
     private static void criteriaAPI() {
         final Configuration configure = new Configuration().configure();

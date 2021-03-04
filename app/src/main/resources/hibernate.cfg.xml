@@ -12,7 +12,7 @@
         <!-- JDBC connection pool settings ... using built-in test pool -->
         <property name="connection.pool_size">3</property>
         <!-- Select our SQL dialect -->
-        <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQL10Dialect</property>
         <!-- Echo the SQL to stdout -->
         <property name="show_sql">true</property>
         <!-- Set the current session context -->
@@ -39,8 +39,12 @@
 <!--        <mapping class="jh.hierarchies.mapped.ScienceBook"/>-->
 <!--        <mapping class="jh.hierarchies.mapped.FictionBook"/>-->
 
-        <mapping class="jh.hierarchies.single.ScienceBook"/>
-        <mapping class="jh.hierarchies.single.FictionBook"/>
-        <mapping class="jh.hierarchies.single.Book"/>
+<!--        <mapping class="jh.hierarchies.single.ScienceBook"/>-->
+<!--        <mapping class="jh.hierarchies.single.FictionBook"/>-->
+<!--        <mapping class="jh.hierarchies.single.Book"/>-->
+
+        <mapping class="jh.hierarchies.join.ScienceBook"/>
+        <mapping class="jh.hierarchies.join.FictionBook"/>
+        <mapping class="jh.hierarchies.join.Book"/>
     </session-factory>
 </hibernate-configuration>
