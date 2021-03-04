@@ -1,4 +1,6 @@
 import antlr.build.ANTLR;
+import jh.hierarchies.FictionBook;
+import jh.hierarchies.ScienceBook;
 import jh.relations.Animal;
 import jh.relations.Aviary;
 import jh.relations.Zoo;
@@ -22,7 +24,37 @@ public class Starter {
 
 //        jpqlExamples();
 
-        criteriaAPI();
+//        criteriaAPI();
+
+        hierarchyInsertData();
+    }
+
+    private static void hierarchyInsertData() {
+        final Configuration configure = new Configuration().configure();
+        final SessionFactory sessionFactory = configure.buildSessionFactory();
+        final EntityManager entityManager = sessionFactory.createEntityManager();
+        entityManager.getTransaction().begin();
+
+        ScienceBook sBook = ScienceBook.builder()
+                .science("Высшая алгебра")
+                .build();
+
+        sBook.setBookTitle("Мат Анализ первый курс");
+        sBook.setAuthor("Фихтенгольц");
+        sBook.setPublishYear(1978);
+
+        FictionBook fBook = FictionBook.builder().genre("роман").build();
+        fBook.setBookTitle("Евгений онегин");
+        fBook.setPublishYear(1833);
+        fBook.setIsPoem(true);
+        fBook.setAuthor("Пушкин");
+
+
+        entityManager.persist(sBook);
+        entityManager.persist(fBook);
+
+        entityManager.getTransaction().commit();
+        entityManager.close();
     }
 
     private static void criteriaAPI() {
