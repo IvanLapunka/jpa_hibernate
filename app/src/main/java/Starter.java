@@ -27,8 +27,40 @@ public class Starter {
 
 //        hierarchyInsertDataMapped();
 //        hierarchyInsertDataSingleTable();
-        hierarchyInsertDataJoin();
+//        hierarchyInsertDataJoin();
+        hierarchyInsertDataTablePerClass();
     }
+
+    private static void hierarchyInsertDataTablePerClass() {
+        final Configuration configure = new Configuration().configure();
+        final SessionFactory sessionFactory = configure.buildSessionFactory();
+        final EntityManager entityManager = sessionFactory.createEntityManager();
+        entityManager.getTransaction().begin();
+
+        jh.hierarchies.tableperclass.ScienceBook sBook = jh.hierarchies.tableperclass.ScienceBook.builder()
+                .science("Высшая алгебра")
+                .build();
+
+        sBook.setBookTitle("Мат Анализ первый курс");
+        sBook.setAuthor("Фихтенгольц");
+        sBook.setPublishYear(1978);
+
+        jh.hierarchies.tableperclass.FictionBook fBook = jh.hierarchies.tableperclass.FictionBook.builder().genre("роман").build();
+        fBook.setBookTitle("Евгений онегин");
+        fBook.setPublishYear(1833);
+        fBook.setIsPoem(true);
+        fBook.setAuthor("Пушкин");
+
+
+        entityManager.persist(sBook);
+        entityManager.persist(fBook);
+
+        entityManager.createQuery("from Book").getResultStream().forEach(System.out::println);
+
+        entityManager.getTransaction().commit();
+        entityManager.close();
+    }
+
 
     private static void hierarchyInsertDataJoin() {
         final Configuration configure = new Configuration().configure();

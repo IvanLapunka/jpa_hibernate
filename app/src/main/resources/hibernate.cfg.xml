@@ -31,10 +31,10 @@
 <!--        <mapping resource="Teacher.hbm.xml"/>-->
 <!--        <mapping resource="Group.hbm.xml"/>-->
 <!--        <mapping resource="Salary.hbm.xml"/>-->
-        <mapping class="jh.relations.Animal"/>
-        <mapping class="jh.relations.Zoo"/>
-        <mapping class="jh.relations.ZooWorker"/>
-        <mapping class="jh.relations.Aviary"/>
+<!--        <mapping class="jh.relations.Animal"/>-->
+<!--        <mapping class="jh.relations.Zoo"/>-->
+<!--        <mapping class="jh.relations.ZooWorker"/>-->
+<!--        <mapping class="jh.relations.Aviary"/>-->
 
 <!--        <mapping class="jh.hierarchies.mapped.ScienceBook"/>-->
 <!--        <mapping class="jh.hierarchies.mapped.FictionBook"/>-->
@@ -43,8 +43,12 @@
 <!--        <mapping class="jh.hierarchies.single.FictionBook"/>-->
 <!--        <mapping class="jh.hierarchies.single.Book"/>-->
 
-        <mapping class="jh.hierarchies.join.ScienceBook"/>
-        <mapping class="jh.hierarchies.join.FictionBook"/>
-        <mapping class="jh.hierarchies.join.Book"/>
+<!--        <mapping class="jh.hierarchies.join.ScienceBook"/>-->
+<!--        <mapping class="jh.hierarchies.join.FictionBook"/>-->
+<!--        <mapping class="jh.hierarchies.join.Book"/>-->
+
+        <mapping class="jh.hierarchies.tableperclass.ScienceBook"/>
+        <mapping class="jh.hierarchies.tableperclass.FictionBook"/>
+        <mapping class="jh.hierarchies.tableperclass.Book"/>
     </session-factory>
 </hibernate-configuration>
