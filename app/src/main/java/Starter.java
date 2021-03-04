@@ -1,6 +1,5 @@
-import antlr.build.ANTLR;
-import jh.hierarchies.FictionBook;
-import jh.hierarchies.ScienceBook;
+import jh.hierarchies.mapped.FictionBook;
+import jh.hierarchies.mapped.ScienceBook;
 import jh.relations.Animal;
 import jh.relations.Aviary;
 import jh.relations.Zoo;
@@ -26,10 +25,39 @@ public class Starter {
 
 //        criteriaAPI();
 
-        hierarchyInsertData();
+//        hierarchyInsertDataMapped();
+        hierarchyInsertDataSingleTable();
     }
 
-    private static void hierarchyInsertData() {
+    private static void hierarchyInsertDataSingleTable() {
+        final Configuration configure = new Configuration().configure();
+        final SessionFactory sessionFactory = configure.buildSessionFactory();
+        final EntityManager entityManager = sessionFactory.createEntityManager();
+        entityManager.getTransaction().begin();
+
+        jh.hierarchies.single.ScienceBook sBook = jh.hierarchies.single.ScienceBook.builder()
+                .science("Высшая алгебра")
+                .build();
+
+        sBook.setBookTitle("Мат Анализ первый курс");
+        sBook.setAuthor("Фихтенгольц");
+        sBook.setPublishYear(1978);
+
+        jh.hierarchies.single.FictionBook fBook = jh.hierarchies.single.FictionBook.builder().genre("роман").build();
+        fBook.setBookTitle("Евгений онегин");
+        fBook.setPublishYear(1833);
+        fBook.setIsPoem(true);
+        fBook.setAuthor("Пушкин");
+
+
+        entityManager.persist(sBook);
+        entityManager.persist(fBook);
+
+        entityManager.getTransaction().commit();
+        entityManager.close();
+    }
+
+    private static void hierarchyInsertDataMapped() {
         final Configuration configure = new Configuration().configure();
         final SessionFactory sessionFactory = configure.buildSessionFactory();
         final EntityManager entityManager = sessionFactory.createEntityManager();

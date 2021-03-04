@@ -1,5 +1,6 @@
-package jh.hierarchies;
+package jh.hierarchies.mapped;
 
+import jh.hierarchies.mapped.Book;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -17,9 +18,10 @@ import javax.persistence.Table;
 @EqualsAndHashCode
 @ToString
 @Data
-@Table(name = "science_book", schema = "hierarchies")
+@Table(name = "fiction_book", schema = "hierarchies")
 @Builder
-public class ScienceBook extends Book{
-    private String science;
-
+public class FictionBook extends Book {
+    private String genre;
+    @Column(name = "is_poem")
+    private Boolean isPoem;
 }

@@ -36,7 +36,11 @@
         <mapping class="jh.relations.ZooWorker"/>
         <mapping class="jh.relations.Aviary"/>
 
-        <mapping class="jh.hierarchies.ScienceBook"/>
-        <mapping class="jh.hierarchies.FictionBook"/>
+<!--        <mapping class="jh.hierarchies.mapped.ScienceBook"/>-->
+<!--        <mapping class="jh.hierarchies.mapped.FictionBook"/>-->
+
+        <mapping class="jh.hierarchies.single.ScienceBook"/>
+        <mapping class="jh.hierarchies.single.FictionBook"/>
+        <mapping class="jh.hierarchies.single.Book"/>
     </session-factory>
 </hibernate-configuration>
