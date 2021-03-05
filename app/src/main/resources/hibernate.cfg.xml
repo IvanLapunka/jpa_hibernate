@@ -31,10 +31,10 @@
 <!--        <mapping resource="Teacher.hbm.xml"/>-->
 <!--        <mapping resource="Group.hbm.xml"/>-->
 <!--        <mapping resource="Salary.hbm.xml"/>-->
-<!--        <mapping class="jh.relations.Animal"/>-->
-<!--        <mapping class="jh.relations.Zoo"/>-->
-<!--        <mapping class="jh.relations.ZooWorker"/>-->
-<!--        <mapping class="jh.relations.Aviary"/>-->
+        <mapping class="jh.relations.Animal"/>
+        <mapping class="jh.relations.Zoo"/>
+        <mapping class="jh.relations.ZooWorker"/>
+        <mapping class="jh.relations.Aviary"/>
 
 <!--        <mapping class="jh.hierarchies.mapped.ScienceBook"/>-->
 <!--        <mapping class="jh.hierarchies.mapped.FictionBook"/>-->

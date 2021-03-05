@@ -12,23 +12,25 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Join;
 import javax.persistence.criteria.Root;
+import java.nio.file.attribute.AttributeView;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 
 public class Starter {
     public static void main(String[] args) {
-//        init();
+        init();//run only once
 
-//        jpqlExamples();
+        jpqlExamples();
 
-//        criteriaAPI();
+        criteriaAPI();
 
 //        hierarchyInsertDataMapped();
 //        hierarchyInsertDataSingleTable();
 //        hierarchyInsertDataJoin();
-        hierarchyInsertDataTablePerClass();
+//        hierarchyInsertDataTablePerClass();
     }
 
     private static void hierarchyInsertDataTablePerClass() {
@@ -162,7 +164,7 @@ public class Starter {
 
         entityManager.createQuery(criteria.select(from)).getResultStream().forEach(System.out::println);
 
-        //------------------------------------------------
+        //condition------------------------------------------------
 
         final CriteriaBuilder cb2 = entityManager.getCriteriaBuilder();
         final CriteriaQuery<Animal> criteria2 = cb2.createQuery(Animal.class);
@@ -170,17 +172,15 @@ public class Starter {
         criteria2.select(from1).where(cb2.equal(from1.get("nickName"), "лапушка"));
         entityManager.createQuery(criteria2).getResultStream().forEach(System.out::println);
 
-        //proection
+        //projection
         final CriteriaBuilder cb3 = entityManager.getCriteriaBuilder();
         final CriteriaQuery<Long> criteria3 = cb3.createQuery(Long.class);
         criteria3.select(cb3.count(criteria3.from(Animal.class)));
         long count = entityManager.createQuery(criteria3).getSingleResult();
         System.out.println(count);
 
-        //JOINS
+        //JOINS should be here...
 
-        entityManager.getTransaction().commit();
-        entityManager.close();
     }
 
     private static void jpqlExamples() {
